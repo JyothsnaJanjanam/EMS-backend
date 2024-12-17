@@ -1,4 +1,4 @@
-const { register, login, verify } = require('../controllers/authController')
+const { login, verify } = require('../controllers/authController')
 const cors = require('cors')
 const verifyToken = require('../middleware/authMiddleware')
 

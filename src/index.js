@@ -1,6 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv").config({path: __dirname+'/.env'})
 const db = require('./config/db')
+const cors = require('cors')
 const verifyToken = require("./middleware/authMiddleware")
 const authRoutes = require('./routes/authRoutes')
 const departmentRoutes = require('./routes/department')
@@ -15,6 +16,13 @@ db();
 const app = express()
 
 // Middleware
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://ems-frontend-iota.vercel.app/'
+  })
+)
+
 app.use(express.json())
 app.use(express.static('public/uploads'))
 
