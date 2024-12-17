@@ -9,7 +9,7 @@ const { getSummary } = require('../controllers/dashboard');
 router.use(
   cors({
     credentials: true,
-    origin: 'https://ems-frontend-iota.vercel.app/'
+    'Access-Control-Allow-Origin': 'https://ems-frontend-iota.vercel.app/'
   })
 )
 

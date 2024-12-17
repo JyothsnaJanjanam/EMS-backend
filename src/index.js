@@ -19,7 +19,7 @@ const app = express()
 app.use(
   cors({
     credentials: true,
-    origin: 'https://ems-frontend-iota.vercel.app/'
+    'Access-Control-Allow-Origin': 'https://ems-frontend-iota.vercel.app/'
   })
 )
 
