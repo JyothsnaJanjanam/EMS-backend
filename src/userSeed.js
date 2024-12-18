@@ -12,6 +12,7 @@ const userRegister = async () => {
       password: hashedPassword,
       role: 'admin'
     })
+    console.log('saved')
     await newUser.save()
   } catch (error) {
     console.log(error)
