@@ -1,17 +1,17 @@
 const express = require("express")
 const dotenv = require("dotenv").config({path: __dirname+'/.env'})
-const db = require('./config/db')
+const db = require('./src/config/db')
 const cors = require('cors')
-const userRegister = require('../userSeed')
+const userRegister = require('./userSeed')
 
-const verifyToken = require("./middleware/authMiddleware")
-const authRoutes = require('./routes/authRoutes')
-const departmentRoutes = require('./routes/department')
-const employeeRoutes = require('./routes/employee')
-const salaryRoutes = require('./routes/salary')
-const leaveRoutes = require('./routes/leave')
-const settingRoutes = require('./routes/setting')
-const dashboardRoutes = require('./routes/dashboard')
+const verifyToken = require("./src/middleware/authMiddleware")
+const authRoutes = require('./src/routes/authRoutes')
+const departmentRoutes = require('./src/routes/department')
+const employeeRoutes = require('./src/routes/employee')
+const salaryRoutes = require('./src/routes/salary')
+const leaveRoutes = require('./src/routes/leave')
+const settingRoutes = require('./src/routes/setting')
+const dashboardRoutes = require('./src/routes/dashboard')
 
 db();
 
