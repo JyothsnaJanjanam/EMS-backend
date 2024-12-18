@@ -4,7 +4,6 @@ const User = require('../models/authModel');
 
 const login = async (req, res) => {
   try {
-    console.log('hey')
     const { email, password } = req.body;
     const user = await User.findOne({ email })
 
@@ -18,8 +17,6 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '2d' })
-
-    console.log(token)
 
     res
       .status(200)

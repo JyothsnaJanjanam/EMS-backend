@@ -20,6 +20,7 @@ const addSalary = async (req, res) => {
     return res.status(200).json({success: true})
 
   } catch (error) {
+    console.log(error.message)
     return res.status(500).json({success: false, message: 'add salary server error'})
   }
 }

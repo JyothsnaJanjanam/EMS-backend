@@ -8,7 +8,7 @@ const router = express.Router()
 router.use(
   cors({
     credentials: true,
-    'Access-Control-Allow-Origin': 'https://ems-frontend-iota.vercel.app/'
+    origin: 'http://localhost:5173'
   })
 )
 

@@ -38,6 +38,8 @@ const getSingleLeave = async (req, res) => {
 }
 
 const getLeaves = async (req, res) => {
+  console.log('hey');
+  
   try{
     const leaves = await Leave.find().populate({
       path: 'employeeId',
@@ -46,9 +48,10 @@ const getLeaves = async (req, res) => {
         { path: 'userId', select: 'name' }
       ]
     })
+    console.log(leaves)
     return res.status(200).json({success: true, leaves})
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
     return res.status(500).json({success: false, message: 'get leaves server error'})
   }
 }
@@ -65,7 +68,7 @@ const getLeaveDetails = async (req, res) => {
     })
     return res.status(200).json({success: true, leave})
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
     return res.status(500).json({success: false, message: 'get leaves deatils server error'})
   }
 }

@@ -2,6 +2,8 @@ const express = require("express")
 const dotenv = require("dotenv").config({path: __dirname+'/.env'})
 const db = require('./config/db')
 const cors = require('cors')
+const userRegister = require('../userSeed')
+
 const verifyToken = require("./middleware/authMiddleware")
 const authRoutes = require('./routes/authRoutes')
 const departmentRoutes = require('./routes/department')
@@ -19,7 +21,7 @@ const app = express()
 app.use(
   cors({
     credentials: true,
-    'Access-Control-Allow-Origin': 'https://ems-frontend-iota.vercel.app/'
+    origin: 'http://localhost:5173'
   })
 )
 
