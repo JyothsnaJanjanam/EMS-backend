@@ -9,7 +9,7 @@ const { getSummary } = require('../controllers/dashboard');
 router.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:5173'
+    origin: 'https://ems-frontend-delta.vercel.app'
   })
 )
 
