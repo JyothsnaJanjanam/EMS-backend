@@ -22,7 +22,7 @@ const app = express()
 app.use(
   cors({
     credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app/'
+    origin: 'https://ems-frontend-delta.vercel.app'
   })
 )
 
