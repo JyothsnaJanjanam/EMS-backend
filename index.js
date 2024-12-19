@@ -27,9 +27,9 @@ app.use(
 )
 
 app.use(express.json())
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-// app.use(express.static('public/uploads'))
+app.use(express.static('public/uploads'))
 
 // Routes
 app.use("/api/auth", authRoutes)
