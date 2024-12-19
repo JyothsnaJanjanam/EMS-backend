@@ -13,7 +13,19 @@ router.use(
 )
 
 router.get('/', verifyToken, getEmployees)
-router.post('/add', verifyToken, upload.single('image'), addEmployee)
+
+router.post('/add', verifyToken, (req, res, next) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({ success: false, message: `File upload error: ${err.message}` });
+      }
+      return res.status(400).json({ success: false, message: `Error: ${err.message}` });
+    }
+    next();
+  });
+},, addEmployee)
+
 router.get('/:id', verifyToken, getSingleEmployee)
 router.put('/:id', verifyToken, updateEmployee)
 router.get('/department/:id', verifyToken, fetchEmployeesByDepId)
