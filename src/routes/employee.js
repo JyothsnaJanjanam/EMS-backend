@@ -13,7 +13,9 @@ router.use(
 )
 
 router.get('/', verifyToken, getEmployees)
+
 router.post('/add', verifyToken, upload.single('image'), addEmployee)
+
 router.get('/:id', verifyToken, getSingleEmployee)
 router.put('/:id', verifyToken, updateEmployee)
 router.get('/department/:id', verifyToken, fetchEmployeesByDepId)

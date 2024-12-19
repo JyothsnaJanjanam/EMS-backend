@@ -3,6 +3,7 @@ const dotenv = require("dotenv").config({path: __dirname+'/.env'})
 const db = require('./src/config/db')
 const cors = require('cors')
 const userRegister = require('./userSeed')
+const path = require('path')
 
 const verifyToken = require("./src/middleware/authMiddleware")
 const authRoutes = require('./src/routes/authRoutes')
@@ -26,6 +27,8 @@ app.use(
 )
 
 app.use(express.json())
+// app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
 app.use(express.static('public/uploads'))
 
 // Routes
