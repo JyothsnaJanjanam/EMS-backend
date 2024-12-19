@@ -22,11 +22,12 @@ const app = express()
 app.use(
   cors({
     credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app'
+    origin: 'http://localhost:5173'
   })
 )
 
 app.use(express.json())
+
 // app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.use(express.static('public/uploads'))

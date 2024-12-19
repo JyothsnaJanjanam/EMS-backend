@@ -5,12 +5,12 @@ const { addLeave, getSingleLeave, getLeaves, getLeaveDetails, updateLeave } = re
 
 const router = express.Router()
 
-router.use(
-  cors({
-    credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app'
-  })
-)
+// router.use(
+//   cors({
+//     credentials: true,
+//     origin: 'https://ems-frontend-delta.vercel.app'
+//   })
+// )
 
 router.post('/add', verifyToken, addLeave)
 router.get('/details/:id', verifyToken, getLeaveDetails)

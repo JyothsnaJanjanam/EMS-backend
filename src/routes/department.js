@@ -5,12 +5,12 @@ const cors = require('cors')
 
 const router = express.Router()
 
-router.use(
-  cors({
-    credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app'
-  })
-)
+// router.use(
+//   cors({
+//     credentials: true,
+//     origin: 'https://ems-frontend-delta.vercel.app'
+//   })
+// )
 
 router.get('/', verifyToken, getDepartments)
 router.post('/add', verifyToken, addDepartment)

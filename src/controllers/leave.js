@@ -38,7 +38,6 @@ const getSingleLeave = async (req, res) => {
 }
 
 const getLeaves = async (req, res) => {
-  console.log('hey');
   
   try{
     const leaves = await Leave.find().populate({
@@ -48,7 +47,6 @@ const getLeaves = async (req, res) => {
         { path: 'userId', select: 'name' }
       ]
     })
-    console.log(leaves)
     return res.status(200).json({success: true, leaves})
   } catch (error) {
     console.log(error.message)

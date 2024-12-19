@@ -6,12 +6,12 @@ const { getSummary } = require('../controllers/dashboard');
 
 
 // middleware
-router.use(
-  cors({
-    credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app'
-  })
-)
+// router.use(
+//   cors({
+//     credentials: true,
+//     origin: 'https://ems-frontend-delta.vercel.app'
+//   })
+// )
 
 router.get('/summary', verifyToken, getSummary)
 

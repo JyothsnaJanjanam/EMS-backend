@@ -14,12 +14,12 @@ const router = express.Router()
 //   next()
 // })
 
-router.use(
-  cors({
-    credentials: true,
-    origin: 'https://ems-frontend-delta.vercel.app'
-  })
-)
+// router.use(
+//   cors({
+//     credentials: true,
+//     origin: 'https://ems-frontend-delta.vercel.app'
+//   })
+// )
 
 
 // router.post('/register', register)

@@ -3,6 +3,7 @@ const Employee = require('../models/employeeModel')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs')
 const Department = require('../models/departmentModel') 
 
 const storage = multer.diskStorage({
