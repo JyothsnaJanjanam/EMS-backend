@@ -48,8 +48,62 @@ const upload = multer({
 
 // const upload = multer({ storage: storage })
 
+// const addEmployee = async (req, res) => {
+//   try {
+//     const {
+//       name,
+//       email,
+//       employeeId,
+//       dob,
+//       gender,
+//       maritalStatus,
+//       designation,
+//       department,
+//       salary,
+//       password,
+//       role,
+//     } = req.body;
+
+//     const user = await User.findOne({ email })
+//     if (user) {
+//       return res.status(400).json({ success: false, message: 'User already registered in emp' })
+//     }
+
+//     const hashPassword = await bcrypt.hash(password, 10)
+
+//     const newUser = new User({
+//       name,
+//       email,
+//       password: hashPassword,
+//       role,
+//       profileImage: req.file ? req.file.filename : ''
+//     })
+//     const savedUser = await newUser.save()
+
+//     const newEmployee = new Employee({
+//       userId: savedUser._id,
+//       employeeId,
+//       dob,
+//       gender,
+//       maritalStatus,
+//       designation,
+//       department,
+//       salary
+//     })
+
+//     await newEmployee.save()
+//     return res.status(200).json({success: true, message: 'employee created'})
+//   } catch(error) {
+//     console.log(error.message)
+//     return res.status(500).json({success: false, message: 'server error in adding employee'})
+//   }
+// }
+
 const addEmployee = async (req, res) => {
   try {
+    console.log('Request body:', req.body);
+    console.log('Uploaded file:', req.file);
+
     const {
       name,
       email,
@@ -64,21 +118,22 @@ const addEmployee = async (req, res) => {
       role,
     } = req.body;
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ success: false, message: 'User already registered in emp' })
+      return res.status(400).json({ success: false, message: 'User already registered' });
     }
 
-    const hashPassword = await bcrypt.hash(password, 10)
+    const hashPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
       name,
       email,
       password: hashPassword,
       role,
-      profileImage: req.file ? req.file.filename : ''
-    })
-    const savedUser = await newUser.save()
+      profileImage: req.file ? `/uploads/${req.file.filename}` : '',
+    });
+
+    const savedUser = await newUser.save();
 
     const newEmployee = new Employee({
       userId: savedUser._id,
@@ -88,16 +143,18 @@ const addEmployee = async (req, res) => {
       maritalStatus,
       designation,
       department,
-      salary
-    })
+      salary,
+    });
 
-    await newEmployee.save()
-    return res.status(200).json({success: true, message: 'employee created'})
-  } catch(error) {
-    console.log(error.message)
-    return res.status(500).json({success: false, message: 'server error in adding employee'})
+    await newEmployee.save();
+
+    return res.status(200).json({ success: true, message: 'Employee created' });
+  } catch (error) {
+    console.error('Error in addEmployee:', error.message);
+    return res.status(500).json({ success: false, message: 'Server error in adding employee' });
   }
-}
+};
+
 
 const getEmployees = async (req, res) => {
   try {
