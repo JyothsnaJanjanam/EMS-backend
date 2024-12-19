@@ -3,18 +3,50 @@ const Employee = require('../models/employeeModel')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const path = require('path')
+// const fs = require('fs')
 const Department = require('../models/departmentModel') 
 
+// Ensure upload directory exists
+const uploadPath = path.join(__dirname, 'public/uploads');
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
+
+// Configure storage and file validation
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/uploads')
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname))
-  }
-})
+    const filename = Date.now() + path.extname(file.originalname);
+    cb(null, filename);
+  },
+});
 
-const upload = multer({ storage: storage })
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+  if (!allowedTypes.includes(file.mimetype)) {
+    return cb(new Error('Invalid file type'), false);
+  }
+  cb(null, true);
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
+});
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'public/uploads')
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname))
+//   }
+// })
+
+// const upload = multer({ storage: storage })
 
 const addEmployee = async (req, res) => {
   try {
