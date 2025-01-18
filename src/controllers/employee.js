@@ -15,7 +15,13 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage, fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jfif'];
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error('Only JPEG, PNG, GIF, and JFIF files are allowed'), false);
+    }
+    cb(null, true);
+  } })
 
 
 const addEmployee = async (req, res) => {
